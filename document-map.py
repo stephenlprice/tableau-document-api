@@ -1,17 +1,36 @@
 from tableaudocumentapi import Workbook
+from tabulate import tabulate
 
 sourceWB = Workbook('./assets/workbooks/superstore.twb')
 
-print('sourceWB ', 'type: ', type(sourceWB), '\n', sourceWB, '\n \n --------------- \n')
+print('\n', sourceWB.filename, '\n')
+print('type:', type(sourceWB), '\n', sourceWB)
+print('\n --------------- \n')
 
 datasources = sourceWB.datasources
 
-print('datasources ', 'type: ', type(datasources), '\n', datasources, '\n \n --------------- \n')
+print('datasources', 'type:', type(datasources), '\n')
+for datasource in datasources:
+  print('datasource:', datasource)
+print('\n --------------- \n')
+
+print(datasource.connections)
+
+for datasource in datasources:
+  print(datasource.connections)
+  print('\n --------------- \n')
+  for connection in datasource.connections:
+    print('connection', 'type:', type(connection), '\n', connection)
+  print('\n ---------------')
+print('\n --------------- \n')
+
+# print('datasources ', 'type: ', type(datasources), '\n', tabulate(datasources), '\n \n --------------- \n')
 
 
 
-# connections = datasources.connections
 
-# if (type())
-# for connections in sourceWB.datasources:
-#   print('sourceWB.datasources.connections: ', sourceWB.datasources.connections) 
+
+
+
+# for connections in datasources:
+#   print('connections: ', connections) 
