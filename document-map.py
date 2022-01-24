@@ -1,7 +1,7 @@
 from tableaudocumentapi import Workbook
 from tabulate import tabulate
 
-sourceWB = Workbook('./assets/workbooks/superstore.twb')
+sourceWB = Workbook('./assets/workbooks/Superstore.twbx')
 
 print('\n', sourceWB.filename, '\n')
 print('type:', type(sourceWB), '\n', sourceWB)
