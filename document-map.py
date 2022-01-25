@@ -1,4 +1,3 @@
-import string
 from tableaudocumentapi import Workbook
 from tabulate import tabulate
 from colorama import init, deinit, Fore, Back, Style
