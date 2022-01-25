@@ -12,14 +12,16 @@ print(f'The workbook object is of type: {type(sourceWB)} \n')
 
 # describe datasources
 datasources = sourceWB.datasources
-dsList = []
-for datasource in datasources:
+dsList = {}
+for index, datasource in enumerate(datasources):
   # tabulate() requires a list of lists containing the object typed as a string as it cannot iterate over class objects
-  dsList.append([str(datasource)])
+  dsList.index = str(datasource)
+  # for connection in datasource.connections:
+
 
 print(f'There are {len(datasources)} datasources in this workbook')
 print(f'The datasources object is of type: {type(datasources)}')
-print(tabulate(dsList, headers=['Datasources'], showindex=True, tablefmt='fancy_grid'), '\n')
+print(tabulate(dsList, headers=['Datasources', 'Connections'], showindex=True, tablefmt='fancy_grid'), '\n')
 
 
 # describe datasource connections
