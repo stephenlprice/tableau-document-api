@@ -7,22 +7,22 @@ import textwrap
 init()
 
 # describe the workbook file and object
-sourceWB = Workbook('./assets/workbooks/Superstore.twbx')
-wbPath = sourceWB.filename
-wbName = sourceWB.filename.rsplit('/', 1)[-1]
+wb = Workbook('./assets/workbooks/Superstore.twbx')
+wbPath = wb.filename
+wbName = wb.filename.rsplit('/', 1)[-1]
 
 # to be used when text needs to be wrapped to fit inside of table cells
 wrapper = textwrap.TextWrapper(width=33)
 
 print(Fore.BLUE + f'\n *** Analyzing Tableau {wbName} ***\n')
 print(Fore.RESET + f'The file is located at {wbPath}')
-print(f'The workbook object is of type: {type(sourceWB)} \n')
+print(f'The workbook object is of type: {type(wb)} \n')
 
 # describe datasources
 print(Fore.RED + f'\n *** Datasources ***\n')
-datasources = sourceWB.datasources
+datasources = wb.datasources
 dsList = []
-for datasource in datasources:
+for index, datasource in enumerate(datasources):
   ds = str(datasource) # datasource class object typed to a string
   conn = [] # list of connections
   if len(datasource.connections) > 0:
@@ -34,12 +34,12 @@ for datasource in datasources:
   else:
     conn.append('none')
 
-  dsList.append([ds, conn]) # list all datasources along with a list of corresponding connections
+  dsList.append([index, ds, conn]) # list all datasources along with a list of corresponding connections & index
 
 
 print(Fore.RESET + f'There are {len(datasources)} datasources in this workbook')
 print(f'The datasources object is of type: {type(datasources)}')
-print(Fore.RED+ tabulate(dsList, headers=['Datasources', 'Connections'], showindex=True, tablefmt='fancy_grid'), '\n')
+print(Fore.RED+ tabulate(dsList, headers=['Index', 'Datasources', 'Connections'], showindex=False, tablefmt='fancy_grid'), '\n')
 
 
 # describe datasource connections
