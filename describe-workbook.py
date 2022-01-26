@@ -1,6 +1,6 @@
 from tableaudocumentapi import Workbook
 from tabulate import tabulate
-from colorama import init, deinit, Fore, Back, Style
+from colorama import init, deinit, Fore
 import textwrap
 
 # On Windows, colorama init() filters out stdout and stderr replaces them with standard Win32 calls
@@ -39,7 +39,7 @@ for index, datasource in enumerate(datasources):
 
 print(Fore.RESET + f'There are {len(datasources)} datasources in this workbook')
 print(f'The datasources object is of type: {type(datasources)}')
-print(Fore.RED+ tabulate(dsList, headers=['Index', 'Datasources', 'Connections'], showindex=False, tablefmt='fancy_grid'), '\n')
+print(Fore.RED+ tabulate(dsList, headers=['Index', 'Datasources', 'Connections'], tablefmt='fancy_grid'), '\n')
 
 
 # describe datasource connections
@@ -50,16 +50,18 @@ for datasource in datasources:
     print('Connection type cannot be described...\n')
   for connection in datasource.connections:
     connList = {
+      'Index': ['0', '1', '2', '3', '4', '5', '6'],
       'Property': ['server', 'dbname', 'username', 'dbclass', 'port', 'query_band', 'initial_sql'],
       'Value': [connection.server, connection.dbname, connection.username, connection.dbclass, connection.port, connection.query_band, connection.initial_sql]
     }
     print('connection type:', type(connection), connection, '\n')
     print('Connection details:')   
-    print(Fore.YELLOW + tabulate(connList, headers='keys', showindex=True, tablefmt='fancy_grid'), '\n')
+    print(Fore.YELLOW + tabulate(connList, headers='keys', tablefmt='fancy_grid'), '\n')
 
   fieldList = []
-  for field in datasource.fields.values():
+  for index, field in enumerate(datasource.fields.values()):
     fieldObj = {
+      'Index': index,
       'Name': field.name,
       'Datatype': field.datatype,
       'Calculation': wrapper.fill(field.calculation) if field.calculation else '', # long text must be wrapped so it fits in table cells
@@ -69,7 +71,7 @@ for datasource in datasources:
 
     fieldList.append(fieldObj)
   print(Fore.RESET + 'Field details:')
-  print(Fore.CYAN + tabulate(fieldList, headers='keys', showindex=True, tablefmt='fancy_grid'))
+  print(Fore.CYAN + tabulate(fieldList, headers='keys', tablefmt='fancy_grid'))
 
   print(Fore.RESET + '\n ------------------------------------------------------------------------------\n')
 
