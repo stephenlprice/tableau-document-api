@@ -1,0 +1,8 @@
+name: document-api
+channels:
+  - defaults
+dependencies:
+  - python=3.8.8
+  - tabulate
+  - colorama
+prefix: /Users/s.price/opt/anaconda3/envs/document-api
