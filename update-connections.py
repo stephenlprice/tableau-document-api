@@ -35,4 +35,4 @@ def updateConnection(connection, ConnectionObj):
   connection.query_band = ConnectionObj.query_band
   connection.initial_sql = ConnectionObj.initial_sql
 
-conn1 = ConnectionObj('none', )
+conn1 = ConnectionObj('none', 'Sales Target (US)', 'Johnny Viz', '')
