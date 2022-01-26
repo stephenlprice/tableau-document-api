@@ -68,7 +68,7 @@ for datasource in datasources:
     }
 
     fieldList.append(fieldObj)
-  print(Fore.RESET + 'Field Details')
+  print(Fore.RESET + 'Field details:')
   print(Fore.CYAN + tabulate(fieldList, headers='keys', showindex=True, tablefmt='fancy_grid'))
 
   print(Fore.RESET + '\n ------------------------------------------------------------------------------\n')
