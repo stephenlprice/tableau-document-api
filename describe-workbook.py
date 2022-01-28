@@ -39,13 +39,13 @@ for index, datasource in enumerate(datasources):
 
 print(Fore.RESET + f'There are {len(datasources)} datasources in this workbook')
 print(f'The datasources object is of type: {type(datasources)}')
-print(Fore.RED+ tabulate(dsList, headers=['Index', 'Datasources', 'Connections'], tablefmt='fancy_grid'), '\n')
+print(Fore.RED + tabulate(dsList, headers=['Index', 'Datasources', 'Connections'], tablefmt='fancy_grid'), '\n')
 
 
 # describe datasource connections
 print(Fore.YELLOW + f'\n *** Connection Details ***\n')
 for datasource in datasources:
-  print(Fore.RESET + 'Datasource ' + Fore.RED + f'{datasource} ' + Fore.RESET + f'has a total of {len(datasource.connections)} connections')
+  print(Fore.RESET + 'Datasource ' + Fore.RED + f'{datasource} ' + Fore.RESET + 'has a total of ' + Fore.YELLOW + f'{len(datasource.connections)}' + Fore.RESET + ' connections')
   if len(datasource.connections) < 1:
     print('Connection type cannot be described...\n')
   for connection in datasource.connections:
@@ -54,8 +54,8 @@ for datasource in datasources:
       'Property': ['server', 'dbname', 'username', 'dbclass', 'port', 'query_band', 'initial_sql'],
       'Value': [connection.server, connection.dbname, connection.username, connection.dbclass, connection.port, connection.query_band, connection.initial_sql]
     }
-    print('connection type:', type(connection), connection, '\n')
-    print('Connection details:')   
+    print('Connection type:', Fore.YELLOW + f'{type(connection)} {connection} \n')
+    print(Fore.RESET + 'Connection details:')   
     print(Fore.YELLOW + tabulate(connList, headers='keys', tablefmt='fancy_grid'), '\n')
 
   fieldList = []
@@ -70,7 +70,9 @@ for datasource in datasources:
     }
 
     fieldList.append(fieldObj)
-  print(Fore.RESET + 'Field details:')
+  print(Fore.RESET + 'The datasource has a total of ' + Fore.CYAN + f'{len(datasource.fields)}' + Fore.RESET + ' fields')
+  print('Field property type:', Fore.CYAN + f'{type(datasource.fields)} \n')
+  print('Field details:')
   print(Fore.CYAN + tabulate(fieldList, headers='keys', tablefmt='fancy_grid'))
 
   print(Fore.RESET + '\n ------------------------------------------------------------------------------\n')
